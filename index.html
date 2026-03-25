@@ -994,50 +994,6 @@
 </footer>
 
 <script>
-  /* ── Bead Road Animation ── */
-  const beadData = ['B','P','B','B','P','B','P','P','B','T','P','B','B','P','P','B','B','P','B','P','P','B','P','B'];
-  const beadEl = document.getElementById('beadRoad');
-  beadData.forEach((v, i) => {
-    const d = document.createElement('div');
-    d.className = `bead ${v}`;
-    d.textContent = v;
-    d.style.animationDelay = `${i * 0.06}s`;
-    beadEl.appendChild(d);
-  });
-  // empty cells
-  for(let i = beadData.length; i < 36; i++) {
-    const d = document.createElement('div');
-    d.className = 'bead empty';
-    beadEl.appendChild(d);
-  }
-
-  /* ── Big Road Animation ── */
-  const bigData = [
-    [0,0,'B'],[1,0,'B'],[2,0,'B'],[3,0,'P'],[4,0,'B'],[5,0,'P'],[6,0,'P'],[7,0,'B'],[8,0,'P'],[9,0,'B'],[10,0,'B'],
-    [0,1,'B'],[1,1,'P'],[2,1,'B'],[4,1,'P'],[7,1,'B'],
-    [0,2,'B'],[2,2,'B'],[7,2,'B'],
-    [2,3,'B'],
-  ];
-  const bigEl = document.getElementById('bigRoad');
-  // Create 6x12 grid
-  const cells = {};
-  for(let r = 0; r < 6; r++) {
-    for(let c = 0; c < 12; c++) {
-      const cell = document.createElement('div');
-      cell.className = 'bigroad-cell';
-      cell.style.gridColumn = c + 1;
-      cell.style.gridRow = r + 1;
-      cells[`${c},${r}`] = cell;
-      bigEl.appendChild(cell);
-    }
-  }
-  bigData.forEach(([col, row, val], i) => {
-    const circle = document.createElement('div');
-    circle.className = `bigroad-circle ${val}`;
-    circle.style.animationDelay = `${0.8 + i * 0.08}s`;
-    if(cells[`${col},${row}`]) cells[`${col},${row}`].appendChild(circle);
-  });
-
   /* ── Intersection Observer for fade-up ── */
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
