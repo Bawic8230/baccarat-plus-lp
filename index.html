@@ -145,11 +145,60 @@
       display: flex; align-items: center; gap: 6px;
     }
 
-    /* ── SCORECARD VISUAL ── */
+    /* ── MONITOR MOCKUP ── */
     .hero-visual {
       position: relative;
-      display: flex; justify-content: center; align-items: center;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding-bottom: 48px;
     }
+    .monitor-wrap {
+      display: flex; flex-direction: column; align-items: center;
+      filter: drop-shadow(0 40px 80px rgba(0,0,0,0.7));
+      transform: perspective(1200px) rotateY(-8deg) rotateX(2deg);
+      transition: transform 0.5s ease;
+    }
+    .monitor-wrap:hover {
+      transform: perspective(1200px) rotateY(-4deg) rotateX(1deg);
+    }
+    .monitor-frame {
+      background: #1a1a2e;
+      border: 3px solid #2a2a3e;
+      border-radius: 12px 12px 6px 6px;
+      padding: 10px 10px 6px;
+      width: 100%;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.04),
+        0 0 0 1px rgba(201,168,76,0.12),
+        0 2px 40px rgba(0,0,0,0.5);
+    }
+    .monitor-screen {
+      background: #000;
+      border-radius: 4px;
+      overflow: hidden;
+      line-height: 0;
+      border: 1px solid #111;
+    }
+    .monitor-screen img {
+      width: 100%; height: auto;
+      display: block;
+      border-radius: 3px;
+    }
+    .monitor-stand { display: flex; flex-direction: column; align-items: center; }
+    .monitor-neck {
+      width: 28px; height: 22px;
+      background: linear-gradient(to bottom, #222, #1a1a1a);
+      border-left: 1px solid #2a2a2a; border-right: 1px solid #2a2a2a;
+    }
+    .monitor-base {
+      width: 100px; height: 8px;
+      background: linear-gradient(to bottom, #222, #181818);
+      border-radius: 0 0 6px 6px;
+      border: 1px solid #2a2a2a; border-top: none;
+    }
+
+    /* ── SCORECARD VISUAL (legacy, kept for reference) ── */
+    .scorecard-frame { display: none; }
     .scorecard-frame {
       background: var(--bg3);
       border: 1px solid var(--border2);
@@ -582,7 +631,7 @@
       <circle cx="10" cy="8" r="1.5" fill="none"/>
       <circle cx="14" cy="8" r="1.5" fill="currentColor" stroke="none"/>
     </svg>
-    Baccarat+
+    Baccarat+ <span style="font-size:13px;font-weight:400;color:var(--text-muted);letter-spacing:1px;">バカラ罫線</span>
   </div>
   <ul class="nav-links">
     <li><a href="#features">機能</a></li>
@@ -597,13 +646,12 @@
   <div class="hero">
     <!-- LEFT -->
     <div class="hero-left fade-up">
-      <div class="hero-badge">バカラ罫線ソフトウェア</div>
+      <div class="hero-badge">Baccarat Scorecard Software for Windows</div>
       <h1>
-        <span class="strike">専用ハード&emsp;20〜30万円</span>
-        既存のPCで、<br><span class="accent">今すぐ始める。</span>
+        専用バカラハードウェアは、<br><span class="accent">もう必要ありません。</span>
       </h1>
       <p class="hero-desc">
-        Baccarat+は、Windowsパソコンにインストールするだけで動くバカラ罫線ソフトウェアです。珠盤路・大路・大眼仔・小路・甲由路の5種類すべてに対応。専用ハードウェアは不要です。
+        <strong style="color:var(--text)">Baccarat+（バカラプラス）</strong>は、Windowsパソコンにインストールするだけで動くバカラ罫線ソフトウェアです。珠盤路・大路・大眼仔・小路・甲由路の5種類すべてに対応。専用ハードウェア（20〜30万円前後）は不要です。
       </p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">デモ・お問い合わせ</a>
@@ -617,53 +665,36 @@
 
     <!-- RIGHT: SCORECARD VISUAL -->
     <div class="hero-visual fade-up" style="transition-delay:0.15s">
-      <div class="scorecard-frame">
-        <div class="scorecard-topbar">
-          <div class="sc-title">BACCARAT+</div>
-          <div class="sc-stats">
-            <div class="sc-stat">
-              <div class="sc-stat-val b">32</div>
-              <div class="sc-stat-lbl">BANKER</div>
-            </div>
-            <div class="sc-stat">
-              <div class="sc-stat-val p">28</div>
-              <div class="sc-stat-lbl">PLAYER</div>
-            </div>
-            <div class="sc-stat">
-              <div class="sc-stat-val t">5</div>
-              <div class="sc-stat-lbl">TIE</div>
-            </div>
+      <!-- Monitor mockup -->
+      <div class="monitor-wrap">
+        <div class="monitor-frame">
+          <div class="monitor-screen">
+            <img src="app-screenshot.png" alt="Baccarat+ アプリ画面 - 珠盤路・大路・大眼仔・小路・甲由路の5種罫線表示" loading="eager">
           </div>
         </div>
-
-        <!-- 珠盤路 -->
-        <div class="road-section">
-          <div class="road-label">珠盤路 · Bead Road</div>
-          <div class="bead-grid" id="beadRoad"></div>
-        </div>
-
-        <!-- 大路 -->
-        <div class="road-section">
-          <div class="road-label">大路 · Big Road</div>
-          <div class="bigroad-grid" id="bigRoad"></div>
-        </div>
-
-        <div class="sc-footer">
-          <div class="sc-tag active">大眼仔</div>
-          <div class="sc-tag active">小路</div>
-          <div class="sc-tag active">甲由路</div>
-          <div class="sc-tag">PAIR</div>
-          <div class="sc-tag">NATURAL</div>
+        <div class="monitor-stand">
+          <div class="monitor-neck"></div>
+          <div class="monitor-base"></div>
         </div>
       </div>
 
-      <div class="hero-float-badge">
+      <!-- Float badges -->
+      <div class="hero-float-badge" style="bottom:60px;">
         <div class="float-icon" style="color:var(--gold)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
         </div>
         <div>
           <div class="float-text-top">5種の罫線に完全対応</div>
-          <div class="float-text-bot">リアルタイム表示</div>
+          <div class="float-text-bot">珠盤路・大路・大眼仔・小路・甲由路</div>
+        </div>
+      </div>
+      <div class="hero-float-badge" style="bottom:12px; left:auto; right:16px;">
+        <div class="float-icon" style="color:#4b8fd4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div>
+          <div class="float-text-top">1920×1080 フルHD対応</div>
+          <div class="float-text-bot">既存PCにインストールするだけ</div>
         </div>
       </div>
     </div>
